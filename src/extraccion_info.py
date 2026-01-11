@@ -55,7 +55,7 @@ else:
 # [cite_start]3. SISTEMA DE SEGURIDAD (Decodificador [cite: 58])
 class SecuritySystem:
     def __init__(self, password):
-        self.password = password       # Ej: ['A', 'C', 'A']
+        self.password = password       
         self.input_sequence = []       # Memoria actual
         self.last_detection_time = 0
         self.cooldown = 1.5            # Segundos entre letras
@@ -135,7 +135,6 @@ while True:
     ret, frame = cap.read()
     if not ret: break
 
-    # [cite_start]1. Calibración [cite: 52]
     frame = undistort_frame(frame, K, dist)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
@@ -151,7 +150,6 @@ while True:
             cv2.putText(frame, f"VEO: {letra}", (500, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
             sistema.update(letra)
     else:
-        # [cite_start]Modo Tracker (Aquí iría tu siguiente fase [cite: 61])
         cv2.putText(frame, "TRACKER ACTIVADO", (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
         # tracker.update(frame)...
 
@@ -166,4 +164,5 @@ while True:
         break
 
 cap.release()
+
 cv2.destroyAllWindows()
